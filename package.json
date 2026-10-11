@@ -1,0 +1,11 @@
+{
+  "name": "coa-portfolio-root",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm --prefix Netflix_portfolio-main run dev",
+    "build": "npm --prefix Netflix_portfolio-main run build && node -e \"const fs = require('fs'); if (fs.existsSync('Netflix_portfolio-main/dist')) fs.cpSync('Netflix_portfolio-main/dist', 'dist', { recursive: true });\"",
+    "preview": "npm --prefix Netflix_portfolio-main run preview",
+    "lint": "npm --prefix Netflix_portfolio-main run lint"
+  }
+}
