@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import pictureImg from '../assets/Portfolio/picture.png';
 
 const Hero = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const sectionRef = useRef(null);
   const cardRef = useRef(null);
   const glareRef = useRef(null);
@@ -306,30 +307,67 @@ const Hero = () => {
 
 
       {/* --- NETFLIX-THEMED DEVELOPER NAVBAR --- */}
-      <header className="fixed top-0 left-0 z-50 w-full bg-white/85 backdrop-blur-md border-b border-slate-200/80 px-6 md:px-12 py-4 flex items-center justify-between pointer-events-auto shadow-sm">
-        <a href="#home" className="text-xl md:text-2xl font-black text-red-600 tracking-tighter flex items-center gap-2">
-          NIDHI JHA<span className="w-1.5 h-1.5 rounded-full bg-slate-900 inline-block"></span>
-        </a>
-        <nav className="hidden lg:flex items-center gap-7 text-xs font-mono uppercase tracking-widest text-slate-700">
-          <a href="#home" className="hover:text-red-600 transition-colors font-semibold">Home</a>
-          <a href="#about" className="hover:text-red-600 transition-colors font-semibold">About Me</a>
-          <a href="#cv" className="hover:text-red-600 transition-colors font-semibold">My CV</a>
-          <a href="#converter" className="hover:text-red-600 transition-colors font-semibold">COA Tool</a>
-          <a href="#projects" className="hover:text-red-600 transition-colors font-semibold">Projects</a>
-          <a href="#gallery" className="hover:text-red-600 transition-colors font-semibold">Gallery</a>
-          <a href="#contact" className="hover:text-red-600 transition-colors font-semibold">Contact</a>
-        </nav>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => window.dispatchEvent(new CustomEvent('open-cv-modal'))}
-            className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-[0_4px_15px_rgba(229,9,20,0.35)] hover:scale-105 active:scale-95 flex items-center gap-1.5 cursor-pointer"
-          >
-            <span>Resume</span>
-            <svg className="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
-              <path d="M7 17l9.2-9.2M17 17V7H7"/>
-            </svg>
-          </button>
+      <header className="fixed top-0 left-0 z-50 w-full bg-white/85 backdrop-blur-md border-b border-slate-200/80 px-6 md:px-12 py-4 pointer-events-auto shadow-sm">
+        <div className="flex items-center justify-between">
+          <a href="#home" className="text-xl md:text-2xl font-black text-red-600 tracking-tighter flex items-center gap-2">
+            NIDHI JHA<span className="w-1.5 h-1.5 rounded-full bg-slate-900 inline-block"></span>
+          </a>
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-xs font-mono uppercase tracking-widest text-slate-700">
+            <a href="#home" className="hover:text-red-600 transition-colors font-semibold">Home</a>
+            <a href="#about" className="hover:text-red-600 transition-colors font-semibold">About Me</a>
+            <a href="#cv" className="hover:text-red-600 transition-colors font-semibold">My CV</a>
+            <a href="#converter" className="hover:text-red-600 transition-colors font-semibold">COA Tool</a>
+            <a href="#case-study" className="hover:text-red-600 transition-colors font-semibold text-red-600">COA Case Study</a>
+            <a href="#projects" className="hover:text-red-600 transition-colors font-semibold">Projects</a>
+            <a href="#gallery" className="hover:text-red-600 transition-colors font-semibold">Gallery</a>
+            <a href="#contact" className="hover:text-red-600 transition-colors font-semibold">Contact</a>
+          </nav>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-cv-modal'))}
+              className="px-3.5 sm:px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-[0_4px_15px_rgba(229,9,20,0.35)] hover:scale-105 active:scale-95 flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>Resume</span>
+              <svg className="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                <path d="M7 17l9.2-9.2M17 17V7H7"/>
+              </svg>
+            </button>
+
+            {/* Mobile Hamburger Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-red-600 hover:bg-slate-100 transition-colors cursor-pointer"
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? (
+                <svg className="w-6 h-6 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                  <path d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Navigation Dropdown Menu */}
+        {isMobileMenuOpen && (
+          <nav className="lg:hidden mt-4 pt-4 border-t border-slate-200/80 flex flex-col gap-3 text-xs font-mono uppercase tracking-widest text-slate-700 bg-white/95 rounded-2xl p-4 shadow-xl">
+            <a href="#home" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 hover:text-red-600 transition-colors font-semibold">Home</a>
+            <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 hover:text-red-600 transition-colors font-semibold">About Me</a>
+            <a href="#cv" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 hover:text-red-600 transition-colors font-semibold">My CV</a>
+            <a href="#converter" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 hover:text-red-600 transition-colors font-semibold">COA Tool</a>
+            <a href="#case-study" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 text-red-600 hover:text-red-700 transition-colors font-bold flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span>
+              COA Case Study
+            </a>
+            <a href="#projects" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 hover:text-red-600 transition-colors font-semibold">Projects</a>
+            <a href="#gallery" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 hover:text-red-600 transition-colors font-semibold">Gallery</a>
+            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 hover:text-red-600 transition-colors font-semibold">Contact</a>
+          </nav>
+        )}
       </header>
     </section>
   );

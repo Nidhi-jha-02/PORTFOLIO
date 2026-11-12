@@ -20,6 +20,7 @@ const Footer = () => {
             <a href="#about" className="hover:text-red-600 transition-colors">About</a>
             <a href="#cv" className="hover:text-red-600 transition-colors">My CV</a>
             <a href="#converter" className="hover:text-red-600 transition-colors">COA Tool</a>
+            <a href="#case-study" className="hover:text-red-600 transition-colors">COA Case Study</a>
             <a href="#projects" className="hover:text-red-600 transition-colors">Projects</a>
             <a href="#gallery" className="hover:text-red-600 transition-colors">Gallery</a>
             <a href="#contact" className="hover:text-red-600 transition-colors">Contact</a>
